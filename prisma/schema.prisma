@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id               Int          @id @default(autoincrement())
+  title            String       @unique
+  authors          Author[]
+  overall_rating   Float?
+  hero_rating      Float?
+  heroine_rating   Float?
+  premise_rating   Float?
+  writing_rating   Float?
+  started_reading  DateTime?
+  finished_reading DateTime?
+  publication_year Int?
+  due              DateTime?
+  epigraph         String?
+  cover_url        String?
+  recommended_by   Recommender? @relation(fields: [recommenderName], references: [name])
+  recommendation   String?
+  quotations       Quotation[]
+  genres           Genre[]
+  tropes           Trope[]
+  collection       Collection?  @relation(fields: [collectionName], references: [name])
+  collectionName   String?
+  format           Format       @relation(fields: [formatName], references: [name])
+  formatName       String
+  series           Series?      @relation(fields: [seriesTitle], references: [title])
+  seriesTitle      String?
+  status           Status       @relation(fields: [statusName], references: [name])
+  statusName       String
+  recommenderName  String?
+}
+
+model Author {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  books Book[]
+}
+
+model Series {
+  id    Int    @id @default(autoincrement())
+  title String @unique
+  books Book[]
+}
+
+model Status {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  books Book[]
+}
+
+model Quotation {
+  id        Int     @id @default(autoincrement())
+  text      String  @unique
+  book      Book    @relation(fields: [bookTitle], references: [title])
+  bookTitle String
+  featured  Boolean @default(false)
+}
+
+model Genre {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  books Book[]
+}
+
+model Trope {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  books Book[]
+}
+
+model Collection {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  books Book[]
+}
+
+model Recommender {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  books Book[]
+}
+
+model Format {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  books Book[]
+}
