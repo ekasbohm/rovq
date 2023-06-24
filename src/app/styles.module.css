@@ -1,0 +1,18 @@
+#nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  box-shadow: 0 0 5px gray;
+}
+
+#randomQuotation {
+  max-width: 70%;
+  color: slateblue;
+  font-style: italic;
+}
+
+#wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}

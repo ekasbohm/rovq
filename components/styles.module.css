@@ -1,0 +1,49 @@
+.book {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  border: 1px solid rgba(128, 128, 128, 0.327);
+  border-radius: 15px;
+  box-shadow: 0 0 5px lightgray;
+  overflow: hidden;
+  transition: all .15s ease-in-out;
+  height: 275px;
+  background-color: white;
+}
+
+.book:hover {
+  transform: scale(1.1);
+}
+
+#cover {
+  width: 100%;
+  height: 150px;
+  border-bottom: 1px solid lightgray;
+  background-color: lightgray;
+  position: relative;
+}
+
+#coverImage {
+  object-fit: cover;
+}
+
+#content {
+  padding: 5px 20px;
+}
+
+#content p {
+  font-size: 14px;
+  margin-top: 0px;
+  color: darkgray;
+}
+
+#bookTitle {
+  text-decoration: none;
+  color: inherit;
+}
+
+#booksWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}

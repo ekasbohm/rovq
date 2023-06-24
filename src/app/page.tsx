@@ -1,16 +1,24 @@
-import prisma from "../../lib/prisma";
-import Book from "../../components/book";
+import Link from "next/link";
+import Image from "next/image";
+import prisma from "@lib/prisma";
+import styles from "./styles.module.css";
 
-export default async function Home() {
-  const books = await prisma.book.findMany({ include: { authors: true } });
+export default async function Covers() {
+  const covers = await prisma.book.findMany({
+    where: { cover_url: { not: null } },
+  });
   return (
-    <main>
-      <h1>Books</h1>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {books.map((book) => (
-          <Book book={book} key={book.id} />
-        ))}
-      </div>
-    </main>
+    <div id={styles.wrapper}>
+      {covers.map(({ id, title, cover_url }) => (
+        <Link href={`/books/${id}`} key={id}>
+          <Image
+            alt={`${title} cover`}
+            src={cover_url as string}
+            width={75}
+            height={100}
+          />
+        </Link>
+      ))}
+    </div>
   );
 }

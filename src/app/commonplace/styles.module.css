@@ -1,0 +1,13 @@
+#wrapper {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  grid-template-rows: "masonry";
+}
+
+#item {
+  max-width: 200px;
+  border-radius: 15px;
+  border: 1px solid gray;
+  padding: 20px;
+}
